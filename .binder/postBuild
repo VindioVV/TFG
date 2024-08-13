@@ -1,1 +1,2 @@
-pip install voila
+conda install voila
+conda install jupyterlab
