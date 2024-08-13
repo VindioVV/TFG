@@ -7,3 +7,8 @@ dependencies:
   - jupyterlab
   - pandas
   - matplotlib
+  - bqplot
+  - ipympl
+  - ipyvolume
+  - scipy
+  - swiplserver
