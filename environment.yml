@@ -13,8 +13,8 @@ dependencies:
   - ipympl
   - ipyvolume
   - scipy
+  - swipl
   - pip
   - pip:
     - pyswip
     - swiplserver
-    - swipl
