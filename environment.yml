@@ -3,6 +3,7 @@ channels:
   - defaults
   - conda-forge
 dependencies:
+
   - python=3.12.4
   - voila
   - jupyterlab
@@ -12,6 +13,8 @@ dependencies:
   - ipympl
   - ipyvolume
   - scipy
-  - pyswip
-  - swiplserver
-  - swipl
+  - pip
+  - pip:
+    - pyswip
+    - swiplserver
+    - swipl
