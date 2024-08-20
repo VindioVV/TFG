@@ -1,0 +1,10 @@
+voila
+jupyterlab
+pandas
+matplotlib
+bqplot
+ipympl
+ipyvolume
+scipy
+pyswip
+swiplserver
