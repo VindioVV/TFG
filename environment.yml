@@ -1,8 +1,9 @@
 name: myenv
 channels:
   - defaults
+  - conda-forge
 dependencies:
-  - python=3.8
+  - python=3.12.4
   - voila
   - jupyterlab
   - pandas
@@ -11,4 +12,6 @@ dependencies:
   - ipympl
   - ipyvolume
   - scipy
+  - pyswip
   - swiplserver
+  - swipl
