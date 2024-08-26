@@ -1,7 +1,7 @@
 :- dynamic output/1.
 
 f1(Numero, Resultado) :-
-    retractall(output(_)),  % Limpia cualquier salida previa
+    retractall(output(_)),  
     f1_aux(Numero, Resultado, Output),
     assert(output(Output)).
 

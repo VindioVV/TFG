@@ -1,16 +1,20 @@
 :- dynamic output/1.
-
-% Predicado principal para iniciar la adivinanza del número.
 adivinar_numero(X) :-
-    retractall(output(_)),
+
+        retractall(output(_)),
+        once(adivinar_aux(X,Output)),
+    assert(output(Output)).
+
+adivinar_aux(X,Output):-
     with_output_to(string(SalidaIntro), (
         escribir_intro
     )),
     format('~w~n', [SalidaIntro]),
-    adivinar(1, 100, X, SalidaFinal),
-    assert(output(SalidaFinal)).
+    adivinar(1, 100, X, SalidaAdivinar),
+    string_concat(SalidaIntro, SalidaAdivinar, Output).
 
-% Proceso de adivinanza que calcula el número medio y simula la respuesta.
+
+
 adivinar(Min, Max, NumeroSecreto, Salida) :-
     Min =< Max,
     Middle is (Min + Max) // 2,
@@ -18,7 +22,6 @@ adivinar(Min, Max, NumeroSecreto, Salida) :-
     manejar_respuesta(Respuesta, Min, Max, Middle, NumeroSecreto, SalidaManejo),
     string_concat(SalidaSimulacion, SalidaManejo, Salida).
 
-% Simulación de respuestas basadas en el número secreto.
 simular_respuesta(Middle, NumeroSecreto, si, '') :-
     Middle =:= NumeroSecreto.
 
@@ -27,24 +30,25 @@ simular_respuesta(Middle, NumeroSecreto, mayor, Salida) :-
     with_output_to(string(Salida1), (
         escribir_continuacion(Middle, mayor)
     )),
-    format('~w~n', [Salida1]),
-    Salida = Salida1.
+       format('~w~n', [Salida1]),
+    string_concat(Salida1, '', Salida).
 
 simular_respuesta(Middle, NumeroSecreto, menor, Salida) :-
     Middle > NumeroSecreto,
     with_output_to(string(Salida1), (
         escribir_continuacion(Middle, menor)
     )),
-    format('~w~n', [Salida1]),
-    Salida = Salida1.
+        format('~w~n', [Salida1]),
+    string_concat('', Salida1, Salida).
 
-% Manejo de las respuestas simuladas y ajuste del rango de búsqueda.
+
 manejar_respuesta(si, _, _, X, _, Salida) :-
     with_output_to(string(Salida1), (
         escribir_final(X)
     )),
-    format('~w~n', [Salida1]),
-    Salida = Salida1.
+        format('~w~n', [Salida1]),
+    string_concat('', Salida1, Salida).
+
 
 manejar_respuesta(mayor, _, Max, Middle, NumeroSecreto, Salida) :-
     NuevoMin is Middle + 1,
@@ -54,15 +58,14 @@ manejar_respuesta(menor, Min, _, Middle, NumeroSecreto, Salida) :-
     NuevoMax is Middle - 1,
     adivinar(Min, NuevoMax, NumeroSecreto, Salida).
 
-% Predicados para escribir mensajes en la salida.
 escribir_intro :-
-    format('Voy a intentar adivinar el número en el que estás pensando (entre 1 y 100).').
+    format('Voy a intentar adivinar el numero en el que estas pensando (entre 1 y 100).~n').
 
 escribir_continuacion(X, mayor) :-
-    format('¿Es tu número ~w?~nNo. Mi número es mayor a ~w.', [X, X]).
+    format('Es tu numero ~w?~nNo. Mi numero es mayor a ~w.~n', [X, X]).
 
 escribir_continuacion(X, menor) :-
-    format('¿Es tu número ~w?~nNo. Mi número es menor a ~w.', [X, X]).
+    format('Es tu numero ~w?~nNo. Mi numero es menor a ~w.~n', [X, X]).
 
 escribir_final(X) :-
-    format('¡Lo tengo! Tu número es: ~w~n', [X]).
+    format('Lo tengo. Tu numero es: ~w~n', [X]).
