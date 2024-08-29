@@ -1,2 +1,0 @@
-FROM swipl
-COPY . /
