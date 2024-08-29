@@ -16,3 +16,7 @@ dependencies:
   - swi-prolog
   - pip:
     - swiplserver
+    - ipywidgets
+    - tk
+    - pillow
+    - ipython
