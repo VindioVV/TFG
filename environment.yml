@@ -16,4 +16,4 @@ dependencies:
   - pip
   - pip:
     - pyswip
-    - swiplserver = 9.3.10
+    - swiplserver==1.0.2
