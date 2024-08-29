@@ -1,2 +1,11 @@
+#!/bin/bash
+
+# Update package lists
+sudo apt-get update
+
+# Install SWI-Prolog
+sudo apt-get install -y swi-prolog
+
 conda install voila
 conda install jupyterlab
+pip install swiplserver
