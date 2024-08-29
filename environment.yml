@@ -3,9 +3,9 @@ channels:
   - defaults
   - conda-forge
 dependencies:
-  - swi-prolog
+
   - python=3.12.4
-  - voila=0.5.1
+  - voila
   - jupyterlab
   - pandas
   - matplotlib
@@ -16,4 +16,4 @@ dependencies:
   - pip
   - pip:
     - pyswip
-    - swiplserver==1.0.2
+    - swiplserver
