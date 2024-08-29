@@ -1,0 +1,26 @@
+services:
+  jupyterlab:
+    image: jupyter/base-notebook:latest
+    container_name: jupyterlab
+    ports:
+      - "8888:8888"
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    volumes:
+      - ./notebooks:/home/jovyan/work
+
+  voila:
+    image: jupyter/voila:latest
+    container_name: voila
+    ports:
+      - "8866:8866"
+    volumes:
+      - ./notebooks:/home/jovyan/work
+    command: ["voila", "/home/jovyan/work"]
+
+  swi-prolog:
+    image: swipl:latest
+    container_name: swi-prolog
+    ports:
+      - "3020:3020"
+    command: ["swipl"]
