@@ -1,5 +1,5 @@
-apt-get update && \
-apt-get install -y software-properties-common && \
-add-apt-repository ppa:swi-prolog/stable && \
-apt-get update && \
-apt-get install -y swi-prolog
+sudo apt-get update && \
+sudo apt-get install -y software-properties-common && \
+sudo add-apt-repository ppa:swi-prolog/stable && \
+sudo apt-get update && \
+sudo apt-get install -y swi-prolog
