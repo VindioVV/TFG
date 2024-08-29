@@ -10,13 +10,15 @@ services:
       - ./notebooks:/home/jovyan/work
 
   voila:
-    image: jupyter/voila:latest
+    image: python:3.12
     container_name: voila
     ports:
-      - "8866:8866"
+      - "8866:8866"  # Puedes cambiar el puerto si es necesario
     volumes:
-      - ./notebooks:/home/jovyan/work
-    command: ["voila", "/home/jovyan/work"]
+      - ./notebooks:/home/app/notebooks
+    working_dir: /home/app
+    command: >
+      bash -c "pip install voila && voila --port=8866 --no-browser /home/app/notebooks"
 
   swi-prolog:
     image: swipl:latest

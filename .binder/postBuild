@@ -1,6 +1,3 @@
-#!/bin/bash
-
-chmod +x /postBuild
 conda install voila
 conda install jupyterlab
 pip install swiplserver
