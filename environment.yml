@@ -14,9 +14,9 @@ dependencies:
   - scipy
   - pip
   - swi-prolog
+  - ipywidgets
+  - tk
+  - pillow
+  - ipython
   - pip:
     - swiplserver
-    - ipywidgets
-    - tk
-    - pillow
-    - ipython
