@@ -17,3 +17,5 @@ dependencies:
   - pip:
     - pyswip
     - swiplserver==1.0.2
+    - prolog
+    - pengine
