@@ -1,2 +1,2 @@
-conda install -c conda-forge -y voila jupyterlab swi-prolog
+conda install -c conda-forge -y voila jupyterlab swi-prolog tk
 pip install swiplserver
