@@ -1,21 +1,18 @@
 :- dynamic output/1.
 
 f1(Numero, Resultado) :-
-    retractall(output(_)),  % Limpia cualquier salida previa
+    retractall(output(_)),  
     f1_aux(Numero, Resultado, Output),
     assert(output(Output)).
 
-% Caso base
 f1_aux(Numero, Resultado, Acc) :-
     Numero =< 1,
     Resultado is 2 + Numero,
     with_output_to(string(Salida), (
         write_elements(Numero, Resultado)
     )),
-    format('~w~n', [Salida]),
-    string_concat('', Salida,Acc).
+    string_concat('', Salida, Acc).
 
-% Caso recursivo
 f1_aux(Numero, Resultado, Acc) :-
     Numero > 1,
     PrimeraX is Numero - 1,
@@ -26,9 +23,8 @@ f1_aux(Numero, Resultado, Acc) :-
     with_output_to(string(Salida), (
         write_elements(Numero, Resultado)
     )),
-    format('~w~n', [Salida]),
-    string_concat(Acc1, Acc2, AccTemp),
-    string_concat(Acc1, Salida, Acc).
+    string_concat(Acc1, Acc2, AccTemp),  % Corrected the order here for concatenation
+    string_concat(AccTemp, Salida, Acc). % Corrected to accumulate all outputs
 
 write_elements(Numero, Resultado) :-
     Numero =< 1,
@@ -36,4 +32,6 @@ write_elements(Numero, Resultado) :-
 
 write_elements(Numero, Resultado) :-
     Numero > 1,
-    format('Operacion del caso recursivo: f1(~w) = f1(~w) + f1(~w) = ~w~n', [Numero, Numero-1, Numero-2, Resultado]).
+    PrimeraX is Numero - 1, % Calculating correctly for output
+    SegundaX is Numero - 2,
+    format('Operacion del caso recursivo: f1(~w) = f1(~w) + f1(~w) = ~w~n', [Numero, PrimeraX, SegundaX, Resultado]).
